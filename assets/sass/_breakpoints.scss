@@ -1,0 +1,346 @@
+$breakpoints: (
+  mobile: 600px,
+  tablet: 800px,
+  laptop-sm: 1024px,
+  laptop: 1240px,
+  desktop-lg: 1800px
+);
+
+@mixin breakpoint($breakpoint, $direction) {
+
+  // Get the breakpoint value.
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+  
+  @if $direction == min {
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  }
+
+}
+
+//MOBILE
+.header{
+
+  @include breakpoint(mobile,min ){
+    &::before{
+      top: -100px;
+    }
+    .hero{
+      padding-top: 5rem;
+      .buttons{
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+    }
+  }
+}
+.main{
+  @include breakpoint(mobile,min ){
+    .states{
+      .state{
+        &__texts{
+          padding-top: 15rem;
+        }
+      }
+      img{
+        max-width: 70%;
+      }
+    }
+  }
+}
+
+//Tablet
+.header{
+  @include breakpoint(tablet,min ){
+    .nav{
+      justify-content: space-around;
+      &__icons{
+        display: none;
+      }
+      &__links{
+        position: relative;
+        flex-direction: row;
+        top: 0;
+
+        justify-content: center;
+        padding-block: 0;
+
+        background-color: transparent;
+        .item{
+          .link{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+
+            .arrow-l{
+              display: block;
+            }
+            .arrow-d{
+              display: none;
+            }
+          }
+
+        }
+        .item.active{
+          .item-hover{
+            left: 0;
+            padding: 2.5rem;
+            background-color: white;
+
+          }
+        }
+      }
+
+    }
+  }
+}
+.main{
+  @include breakpoint(tablet,min ){
+    .states{
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      padding-top: 0;
+  
+      img{
+        grid-column: 1/2;
+        top: 20px;
+        left: -80px;
+        float: left;
+      }
+      .state{
+        grid-column: 1/3;
+        padding-block: 8rem;
+        border-bottom-left-radius: 20%;
+        border-top-right-radius: 20%;
+  
+        &__texts{
+          padding: 0;
+          margin: 0;
+          max-width: 55rem;
+          text-align: left;
+          float: right;
+          .title-m{
+            margin-inline: 0;
+          }
+          .paragraph{
+            text-align: left;
+            margin: 0;
+            max-width: 50rem;
+  
+          }
+  
+        }
+  
+        &::before{
+          top: 0%;
+          bottom: 0;
+        }
+      }
+    }
+  
+  }
+}
+.footer{
+  @include breakpoint(tablet,min ){
+    .nav{
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+}
+
+//LAPTOP-sm
+.header{
+  @include breakpoint(laptop-sm,min ){
+
+    &::before{
+      background-image: url('../images/bg-pattern-intro-desktop.svg');
+    }
+
+    .nav{
+      &__logins{
+        display: block;
+      }
+      &__links{
+        width: 60%;
+        justify-content: start;
+      }
+    }
+  }
+}
+.main{
+  @include breakpoint(laptop-sm,min){
+    .future{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      position: relative;
+
+      .subtitle-future{
+        position: absolute;
+        top: -50px;
+        left: 40%;
+      }
+    
+      .content{
+        grid-column: 1/2;
+        grid-row: 2/-1;
+        text-align: left;
+
+        .paragraph{
+          margin: 0;
+        }
+      }
+      img{
+        grid-column: 2/-1;
+        grid-row: 2/-1;
+
+      }
+    }
+    .states{
+    
+      img{
+        top: 20px;
+        left: 0;
+        float: left;
+        right: 60px;
+      }
+      .state{
+        padding: 10rem;
+        &__texts{
+          padding: 0;
+          margin: 0;
+          max-width: 60rem;
+          text-align: left;
+          padding-left: 10rem;
+          .title-m{
+            margin-inline: 0;
+            max-width: 60rem;
+          }
+          .paragraph{
+            text-align: left;
+            max-width: 60rem;      
+          }
+        }
+
+        &::before{
+          width:50% ;
+          top: 0;
+          right:0;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+  
+      
+      }
+    }
+
+    .powerfull{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+
+      .content{
+        grid-column: 2/3;
+        text-align: left;
+        .paragraph{
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+.footer{
+  @include breakpoint(laptop,min ){
+
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding-inline: 10%;
+    justify-content: baseline;
+    &__img{
+      grid-column: 1/2;
+    }
+    .nav{
+      grid-column: 2/-1;
+      margin: 0;
+      .links{
+        align-items: flex-start;
+      }
+    }
+  }
+}
+.header{
+  height: 85vh;
+  border-bottom-left-radius: 10%;
+  .hero{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+}
+.main{
+  @include breakpoint(laptop,min ){
+    .future{
+      align-items: center;
+      justify-items: end;
+
+      .subtitle-future{
+        position: absolute;
+        top: 50px;
+        left: 40%;
+      }
+
+      .image-m{
+        display: none;
+      }
+      .image-d{
+        display: block;
+        width: 120%;
+        // justify-self: start;
+        margin-right: -260px;
+      }
+    }
+   
+    .states{
+      img{
+        top: -50px;
+      }
+      .state{
+        border-bottom-left-radius: 10%;
+        border-top-right-radius: 10%;
+        padding-block:9rem ;
+        &__texts{
+          padding-left: 0;
+        }
+      }
+    }
+    .powerfull{
+      margin-block-start: 15rem;
+      align-items: center;
+      justify-items: start;
+  
+      .content{
+        .paragraph{
+          max-width: 50rem;
+        }
+      }
+      .image-m{
+        display: none;
+      }
+      .image-d{
+        display: block;
+        width: 130%;
+        margin-left: -300px;
+
+      }
+    }
+
+  }
+}
