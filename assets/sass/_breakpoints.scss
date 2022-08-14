@@ -1,3 +1,4 @@
+@use 'mixins'as m;
 $breakpoints: (
   mobile: 600px,
   tablet: 800px,
@@ -54,46 +55,67 @@ $breakpoints: (
 //Tablet
 .header{
   @include breakpoint(tablet,min ){
-    .nav{
-      justify-content: space-around;
-      &__icons{
+    nav {
+      .logo {
+        width: 6%;
+        padding-right: 4em;
+      }
+      .nav-toggle {
         display: none;
       }
-      &__links{
-        position: relative;
-        flex-direction: row;
-        top: 0;
-
-        justify-content: center;
-        padding-block: 0;
-
+      ul {
+        @include m.flex-box(row);
+        position: initial;
+        min-height: auto;
+        width: 70%;
+        padding: 0;
         background-color: transparent;
-        .item{
-          .link{
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-
-            .arrow-l{
-              display: block;
-            }
-            .arrow-d{
+        box-shadow: none;
+        .links {
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 0;
+          li {
+            width: auto;
+            ul {
               display: none;
+              position: absolute;
+              width: 13%;
+              background-color: #fff;
+              box-shadow: 0 0 1em rgba(0, 0, 0, 0.342);
+              border-radius: 10px;
+              a {
+                text-align: left;
+                color: #000;
+              }
+            }
+            a {
+              color: #fff;
+            }
+            img {
+              padding-left: 0.5em;
             }
           }
-
         }
-        .item.active{
-          .item-hover{
-            left: 0;
-            padding: 2.5rem;
-            background-color: white;
-
+        .session {
+          flex-direction: row;
+          width: 50%;
+          padding-right: 6em;
+          .login {
+            color: #fff;
+            background-color: transparent;
+          }
+          .sing {
+            background-color: #fff;
+            color: #ff4958;
+          }
+          .sing:hover {
+            color: #fff;
+            background-color: #fd7b87;
           }
         }
       }
-
     }
   }
 }

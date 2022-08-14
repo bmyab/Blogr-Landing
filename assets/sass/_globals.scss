@@ -1,4 +1,5 @@
 @use 'colors' as c ;
+@use 'mixins'as m;
 $font-family: 'Overpass', sans-serif;
 $font-family2: 'Ubuntu', sans-serif;
 
@@ -23,7 +24,6 @@ body{
 //HEADER
 .header{
   height: 65vh;
-  padding-block-start: 2rem;
   background: linear-gradient(c.$Verylightred 0% , c.$Lighred 100%);
 
   position: relative;
@@ -50,101 +50,87 @@ body{
     z-index: -1;
     
   }
-  .nav{
-    width: calc(100% - 8%);
-    max-width: 1400px;
-    margin-inline: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &__logo{
-      max-width: 30%;
-    }
-
-    &__icons{
-      width: 20px;
-      .close{
-        display: none;
-      }
-      .hamburguer{
-        cursor: pointer;
+  nav {
+    @include m.flex-box(row);
+    position: absolute;
+    max-width: 100%;
+    min-width: 100%;
+    z-index: 3;
+    gap: 10rem;
+    .logo {
+      width: 70%;
+      padding: 2.5em;
+      img {
+        width: 7em;
       }
     }
-    &__logins{
-      display: none;
-    }
-
-    &__links{
-      width: 90%;
-      height: 50%;
-      padding-block-start: 5rem;
-      margin-inline: auto;
-      
+    .nav-toggle {
       display: flex;
-      gap: 4.5rem;
-      flex-direction: column;
       align-items: center;
-      
-      position: absolute;
-      top: 150px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-
-
-      list-style: none;
-      background-color: c.$White;
-      border-radius: 0.8rem;
-      .item{
-        
-        .link{
-          color: #333;
-          text-decoration: none;
-        }
-        .arrow-l{
-          display: none;
-        }
-        img{
-          margin-inline-start: 0.5rem;
-        }
-
-        &:hover{
-          text-decoration: underline;
-        }
-      }
-      .item.active{
-        position: relative;
-        .item-hover{
-          position: absolute;
-          top: 50%;
-          left: -110%;
-          margin-inline:auto ;
-          padding: 2.5rem 8rem;
-          margin-top: 2rem;
-  
-          color: c.$Grayishblue;
-          background-color: #eee;
-          border-radius: 0.5rem;
-          
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 1.5rem;
-  
-          li{
-            list-style: none;
-  
-            &:hover{
-              color: black;
-              cursor: pointer;
+      justify-content: center;
+      width: 30%;
+    }
+    > ul {
+      @include m.flex-box(column);
+      display: none;
+      justify-content: flex-start;
+      position: fixed;
+      text-align: center;
+      top: 15%;
+      width: 80%;
+      min-height: 45vh;
+      padding: 1.5em;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 1.4em rgba(0, 0, 0, 0.342);
+      .links {
+        @include m.flex-box(column);
+        li {
+          list-style: none;
+          width: 100%;
+          a {
+            display: block;
+            padding: 1em;
+            font-weight: bold;
+            text-decoration: none;
+            img {
+              padding-left: 0.5em;
+              transition: 0.5s ease;
+            }
+          }
+          ul {
+            display: none;
+            width: 100%;
+            padding: 0;
+            background-color: #efeff1;
+            li {
+              width: auto;
             }
           }
         }
       }
+      .session {
+        @include m.flex-box(column);
+        gap: 1em;
+        a {
+          display: block;
+          width: 50%;
+          padding: 1.5rem;
+          border-radius: 30px;
+          text-decoration: none;
+          font-weight: bold;
+        }
+        .login {
+          background-color: transparent;
+          padding-right: 16px;
+        }
+        .sing{
+          color: c.$White;
+          background-color: c.$Verylighred;
+        }
+        
+      }
     }
-
   }
   
   .hero{
